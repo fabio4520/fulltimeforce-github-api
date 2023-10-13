@@ -10,6 +10,16 @@ export class GithubController {
     @Param('owner') owner: string,
     @Param('repo') repo: string,
   ) {
-    return this.githubService.listCommits(owner, repo);
+    if (!owner || !repo) {
+      return {
+        success: false,
+        message: 'Please provide owner and repo',
+      };
+    }
+    const commits = await this.githubService.listCommits(owner, repo);
+    return {
+      success: true,
+      commits,
+    };
   }
 }
