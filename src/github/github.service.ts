@@ -13,6 +13,22 @@ export class GithubService {
         'X-GitHub-Api-Version': '2022-11-28',
       },
     });
-    return response.data;
+
+    // Group commits by date
+    const responseData = response.data;
+
+    const formattedData = responseData.reduce((groupedData, commit) => {
+      const date = commit.commit.author.date;
+      const dateFormatted = new Date(date).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
+      groupedData[dateFormatted] = groupedData[dateFormatted] || [];
+      groupedData[dateFormatted].push(commit);
+      return groupedData;
+    }, {});
+
+    return formattedData;
   }
 }
