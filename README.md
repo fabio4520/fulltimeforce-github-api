@@ -50,8 +50,8 @@ Before you begin, ensure you have the following installed on your system:
 
 ## Environment Variables
 
-The current api has a personal github token in order to make requests, but It can be used without any token.
+Create .env file and set up the following variables.
 
 ```env
 PORT=3000
-GITHUB_API_URL=''
+GITHUB_API_URL=' https://api.github.com'
