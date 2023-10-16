@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { GithubService } from './github.service';
 
 @Controller('github')
@@ -9,6 +9,7 @@ export class GithubController {
   async listCommits(
     @Param('owner') owner: string,
     @Param('repo') repo: string,
+    @Query('per_page') per_page: number,
   ) {
     if (!owner || !repo) {
       return {
@@ -16,7 +17,7 @@ export class GithubController {
         message: 'Please provide owner and repo',
       };
     }
-    const commits = await this.githubService.listCommits(owner, repo);
+    const commits = await this.githubService.listCommits(owner, repo, per_page);
     return {
       success: true,
       commits,

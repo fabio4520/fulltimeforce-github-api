@@ -7,7 +7,7 @@ The API is deployed and you can use it in the following link: https://fulltimefo
 It has a unique endpoint in order to get the commits
 Example:
 
-GET https://fulltimeforce-github-api.onrender.com/github/repos/fabio4520/nodejs-kafkajs/commits
+GET https://fulltimeforce-github-api.onrender.com/github/repos/fabio4520/nodejs-kafkajs/commits?per_page=30
 
 Note that it must be provided an owner and the name of the repository in order to get the commits.
 

@@ -5,8 +5,8 @@ import axios from 'axios';
 export class GithubService {
   constructor() { }
 
-  async listCommits(owner: string, repo: string) {
-    const url = `${process.env.GITHUB_API_URL}/repos/${owner}/${repo}/commits`;
+  async listCommits(owner: string, repo: string, per_page: number = 30) {
+    const url = `${process.env.GITHUB_API_URL}/repos/${owner}/${repo}/commits?per_page=${per_page}`;
     const response = await axios.get(url, {
       headers: {
         Accept: 'application/vnd.github+json',
